@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>My Octopress Blog</title>
-  <meta name="author" content="Your Name">
+  <title>理性动态链接库</title>
+  <meta name="author" content="sproblvem">
 
   
-  <meta name="description" content=" Blog Archives Recent Posts ">
+  <meta name="description" content="SOSP 2013共计30篇论文, 分成9个session. 其每逢奇数年召开, 今年是第24届, 而OSDI在偶数年召开, 去年是第10届. 作为一个有将近50年历史的老牌会议, SOSP一直严格控制论文的数量. 相比于SIGGRAPH动辄上百篇, KDD同时四个分会场, 系统界还是相对保守的 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +21,7 @@
   <link rel="canonical" href="http://sproblvem.github.io">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="理性动态链接库" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
@@ -36,9 +36,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">My Octopress Blog</a></h1>
+  <h1><a href="/">理性动态链接库</a></h1>
   
-    <h2>A blogging framework for hackers.</h2>
+    <h2>Let us leave the world a wiser one than we found - Charles Babbage</h2>
   
 </hgroup>
 
@@ -66,6 +66,335 @@
       <div class="blog-index">
   
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/09/sosp-2013-analysis/">SOSP 2013 Analysis</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-09T21:43:00+08:00" pubdate data-updated="true">Nov 9<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>SOSP 2013共计30篇论文, 分成9个session. 其每逢奇数年召开, 今年是第24届, 而OSDI在偶数年召开, 去年是第10届. 作为一个有将近50年历史的老牌会议, SOSP一直严格控制论文的数量. 相比于SIGGRAPH动辄上百篇, KDD同时四个分会场, 系统界还是相对保守的. 从这两年的SOSP/OSDI上看, 论文的标题趋向文艺, 内容也更加丰富有趣. 每年会议设置的session完全根据投稿内容而定, 没有事先指定的topic, 因此很能反映学术界和工业界当前的潮流.</p>
+
+<p>世界范围内, 基本上只有最顶尖的20所大学和机构能够比较稳定的在SOSP/OSDI上灌水, 其他学校可能十几年才冒出来一个天纵奇才的哥们中一篇. 顺带提一句, 欧洲只有三所学校在系统方面能够在最顶级的会议上灌水, 分别是Cambridge, ETH和EPFL, 剩下所有的学校都在美国. 国内完全本土培养起的系统届大牛&#8221;陈海波&#8221;(复旦本硕博,现为上交的教授), 在2011年的时候给&lt;中国计算机学会通讯>写了一篇论述系统届各大会议及研究方法的文章<a href="http://www.ccf.org.cn/resources/1190201776262/2011/09/21/7.pdf">一名系统研究者的攀登之路</a>. 就是由于他在SOSP11上发表了国内第一篇不与国外的工业界(如MSRA, Google)合作而独立完成的顶级论文(<a href="http://ipads.se.sjtu.edu.cn/lib/exe/fetch.php?media=publications:cloudvisor-sosp2011.pdf">CloudVisor</a>), 讲如何在云上使用虚拟机技术进行安全保护的. 三年前他曾来清华与我们组交流过一次, 介绍了他们组当时的四个工作, 为人非常谦恭有礼. 这篇SOSP11发表后不久, 就被上海交通大学挖了过去, 直接给了正教授.</p>
+
+<p>开始正题, 后面的文章中若碰到我熟悉的学校, 实验室和教授我会一一介绍.</p>
+
+<h3>Session 1: Juggling Chainsaws, Chair: Rebecca Isaacs</h3>
+
+<p>这个session的主席Rebecca Issacs是微软的一名女性研究员, 发表了一堆的顶级论文. 无独有偶, 本session下第二篇文章中的作者Barbara Liskov也是一名女性,可见系统虽然苦, 但并不是纯爷们的领域.</p>
+
+<blockquote><p>The Scalable Commutativity Rule: Designing Scalable Software for Multicore Processors</p>
+
+<p>Austin T. Clements, M. Frans Kaashoek, Nickolai Zeldovich, Robert Morris (MIT CSAIL), Eddie Kohler (Harvard)</p></blockquote>
+
+<p>本文考察了interface(如system call)对软件扩展性的影响. 核心问题是, 如果把接口和实现良好的分离开来, 那接口的设计中是不是就蕴含了一些天然的限制, 使得无论怎样实现, 都无法突破这些天然限制. 作者编写了一个称为COMMUTER的工具, 以及一个原型操作系统SV6. 实验表明对COMMUTER产生的13664个test而言, linux能对其中的68%良好扩展, 而SV6能良好扩展其中的99%.</p>
+
+<p>这个问题我以前也想到过, 掂量了下自己的能力和完成这个idea的工作量, 就知难而退了. 他们在文中实现的SV6应该不是白手起家. 因为他们组一直在用一个名为<a href="http://pdos.csail.mit.edu/6.828/2012/xv6.html">XV6</a>的教学操作系统给本科生上操作系统的课程, 我猜这个SV6就是XV6的改型. COMMUTER工具是另外一个硬活, 需要Frans教授这样在系统界摸爬滚打的数十年的经验来指导, 才能真正指出interface内涵的限制. 相比之下, 就算我自己再头悬梁锥刺股的去在上面改一个原型系统出来. 没有这样真正懂得OS的大神指导, 也是没可能完成这样的论文.</p>
+
+<p>这篇文章来自大名鼎鼎的MIT CSAIL实验室下的<a href="http://pdos.csail.mit.edu/">PDOS小组</a>, 五个作者中的三个我都很熟悉.</p>
+
+<p><a href="pdos.csail.mit.edu/~kaashoek">Frans Kasshoek</a>教授是在SOSP/OSDI上发表论文最多的作者, 曾担任了三年清华的客座教授, 可能后来嫌我们学校烂泥扶不上墙就没再来了……Frans教授师承自系统届祖师爷级别的人物Andrew S. Tanenbaum, 如今在系统届活跃的研究人员向上追溯师承关系有几乎一小半都可以追到Andrew身上. 我曾听过两次Frans的讲座, 给我印象最深刻的是, 有次我坐在第二排, 正在嘉宾席后面. 他讲完自己的topic之后, 坐在嘉宾席上等待他手下的一个faculty讲另一个topic. 竟然分分钟掏出个Thinkpad打开VIM界面就开始编程了. 当时Frans已经是美国工程院院士了, 年龄也超过了50岁, 竟然还抓紧这种零散时间写程序. 这是我个人见到的最高龄的, 也很可能是最高水平的程序员现场编程.</p>
+
+<p><a href="http://people.csail.mit.edu/nickolai/">Nickolai Zeldovich</a>曾经在去年跟我合作过一篇文章, 也是他们到清华讲座. 我发现这哥们懂symbolic execution, 当时我正好有一个idea, 就上去跟他套磁. 他表示pretty cool, 最后就做了篇文章出来, 但不幸跟EPFL的发表在PLDI 12上的一篇文章撞车了, 于是这篇文章只能躺在我的硬盘深处, 没机会再去推动人类进步. 当时跟这哥们的合作主要是通过email, 我把文章发给他, 他给我提建议应当如何继续试验, 如何分析结果, 包括文章内容的取舍, 短短几封信就受益匪浅. 毫不夸张的说, 超过我这些年从导师和实验室获得指导的总和(因为总共也没多少……). 顺便一提, 这哥们是stanford的博士, 期间主要是搞信息流的, 写了第一个支持信息流的操作系统原型<a href="http://www.scs.stanford.edu/histar/">HiStar</a>. 学术界一直企图用信息流去在理论上优美的解决信息的控制, 审计等问题, 但据我所知好像一直没在工业界得到大规模的应用.</p>
+
+<p><a href="http://pdos.csail.mit.edu/rtm/">Robert Morris</a>, 单看这个名字大家可能看着有点眼熟. 没错, 就是他, 1988年在Cornell读研究生的时候发布了世界上第一个蠕虫. 他爹也是个大名鼎鼎的Morris, 曾任美国国家计算机安全中心(隶属于美国国家安全局NSA)首席科学家. 称得上是老子搞安全, 儿子来捣蛋. 以前我第一次读到这哥们的论文的时候, 去他们实验室主页瞎晃, 发现MIT开了一门计算机安全的课程. 课程的introduction就把这位开启蠕虫时代的活化石拉到eager young man们面前, 讲述自己的心路历程…</p>
+
+<p>多核上的扩展性是PDOS小组的传统方向, 从Frans教授算起已经折腾了20多年, 这也是为什么Frans教授是二作, 而Niciolai是三作, 因为Nickolai的主研方向是信息流, 而这样超一流实验室发表的文章的作者顺序, 真的是按贡献大小排序的. 两年前我还在折腾Linux Kernel的时候, 正碰上他们组发表了一篇修改Linux内核的锁实现, 以在众核(单机超过32核)情况下提升应用性能的文章. 文章效果非常好, 使用的几个workload都达到了近乎线性的加速比. 我在学术讨论会上报告这篇文章的时候, 大老板听闻这篇文章只不过编写了1600+行代码, 大手一挥让我们大干快上, 也搞个类似的出来. 可是改内核这种事情, 别说修改1600行, 就是改一行代码, 想要知道在哪里修改能够取得预期的效果, 对普通的博士生来说其背后的工作量都是难以估算的. 不知道他们的技术如今是否被并入了linux kernel distribution的 mainline. 他们组的研究方向相对传统, 很少去赶时髦. 往往是去深入考察一些大家都习以为常的系统的设计和实现, 从中发现改进的机会, 工作都特别的硬. 这个组曾经是我的dream team, 因此对他们的情况比较了解, 在这里介绍的比较多.</p>
+
+<blockquote><p>Speedy Transactions in Multicore In-Memory Databases</p>
+
+<p>Stephen Tu, Wenting Zheng (MIT), Eddie Kohler (Harvard), Barbara Liskov, Samuel Madden (MIT)</p></blockquote>
+
+<p>这篇文章是in-memory浪潮的又一体现, 从头实现了一个新的database, silo. 尽量避免所有可能产生数据竞争的设计, 比如transaction ID的分配. 核心贡献是一个commit protocol, 号称能够提供极好的扩展性. 使用TPC-C做测试, 在一台32核机器上能够每秒处理7000000个transactions, 数倍于之前的记录.</p>
+
+<p>许多次跟新的朋友聊起我的研究方向的时候, 我的开场白都是&#8221;我们系统界是夕阳产业&#8221;. 早在千年之交的时候, <a href="http://en.wikipedia.org/wiki/Rob_Pike">Rob Pike大神</a>就做过报告&lt;<a href="http://herpolhode.com/rob/utah2000.pdf">Systems Software Research is Irrelevant</a>>, 在其中明确表示我们的黄金时代已经过去了, 纯粹的系统研究已经很难再出现破坏性的新idea了. 牛逼的idea只有那些, 已经被大家不知道轮了多少遍了. 所以现在不得不开始走结合的路线, 如软件跟硬件的co-design; OS跟Application的配合(即研制domain specific的kernel); 以及最普遍的Hybrid, 在几个方向上都有所改进, 然后攒在一起, 获得一个considerable improvement, 象这篇文章一样.</p>
+
+<p>四作<a href="http://www.pmg.csail.mit.edu/~liskov/">Barbara Liskov</a>奶奶, 是2008年的图灵奖获得者, 以表彰其在数据抽象, 容错和分布式系统上的卓越贡献. 巴奶奶近些年比较出名的文章是&#8221;<a href="http://pmg.csail.mit.edu/papers/osdi99.pdf">Practical Byzantine Fault Tolerance</a>&ldquo;, 发表在99年的SOSP上. 巴奶奶也是历史上第二位女性图灵奖得主. 多提一句, 2006年<a href="http://en.wikipedia.org/wiki/Frances_E._Allen">Frances E. Allen</a>由于在编译器优化和自动并行化领域的奠基性贡献而成为第一位获得图灵奖的女性. 这两位奶奶干的都是系统届最硬的活, 真是名符其实的tough granny.</p>
+
+<p>Samuel Madden也是大家的老朋友了, ISTC BigData的Center Directors, data hub的boss.</p>
+
+<blockquote><p>Everything You Always Wanted to Know about Synchronization but Were Afraid to Ask</p>
+
+<p>Tudor David, Rachid Guerraoui, Vasileios Trigonakis (EPFL)</p></blockquote>
+
+<p>这篇文章名字就很有意思, 作者做了一个广泛的调研, 从最底层的cache coherence到上层的软件sync. 结论是sync应当由硬件完成.</p>
+
+<p>本文来自大名鼎鼎的EPFL(洛桑联邦理工学院), 这几年势头很猛. 跟ETH(苏黎世联邦理工学院, 爱因斯坦的母校)并称欧洲大陆系统双壁. 从我个人的体会说, 欧洲大陆的研究方向和论文撰写风格, 其实跟美国还是有挺大不同的. 欧洲更加优雅一些, 相对更注重理论和逻辑, 但实用性上美国式的糙快猛则完爆欧洲大陆. 由于没有发达的工业界支撑, 欧洲系统研究无法与美国相提并论也是情理之中.</p>
+
+<h3>Session 2: Time is of the Essence, Chair: Eddie Kohler</h3>
+
+<p>本session的chair在前一个session中发表了两篇文章, 身为Harvard的副教授, 一直跟MIT的人搅在一起, 不知道为啥.</p>
+
+<blockquote><p>Dandelion: A Compiler and Runtime for Heterogeneous Systems</p>
+
+<p>Christopher J Rossbach, Yuan Yu, Jon Currey, Jean-Philippe Martin, Dennis Fetterly (Microsoft Research Silicon Valley)</p></blockquote>
+
+<p>从摘要和人员构成上看, 这篇文章是微软Dryad(DryadLINQ)项目的的后续. 本文的贡献是, 提供一个统一的编程接口(.NET), 在底层自动把计算任务给分配到异构的计算资源上去, 如CPU, GPU以及FPGA, 不过看摘要的后半段应该主要做的工作是.NET的code给编译成CUDA的code, FPGA就是走走嘴炮.</p>
+
+<blockquote><p>Sparrow: Distributed, Low Latency Scheduling</p>
+
+<p>Kay Ousterhout, Patrick Wendell, Matei Zaharia, Ion Stoica (UC Berkeley)</p></blockquote>
+
+<p>来自UC Berkeley一个非常活跃的实验室<a href="https://amplab.cs.berkeley.edu/">AMPLab</a>, 被视为Hadoop接班人的<a href="http://spark.incubator.apache.org/">Spark</a>, 就是出自他们组. 他们组提供了一套完整的大数据处理和分析框架, 称为BDAS. 三作Matei进过两届ICPC world final, 分获<a href="http://www.cs.berkeley.edu/~matei/programming_contests/">2004的15名和2005的第4名</a>. Matei不但本科比赛做的牛逼, 博士期间的学术成就同样光彩照人. 身为他的同龄人, 看完他的<a href="http://www.cs.berkeley.edu/~matei/">publication列表</a>, 我深深的觉得, 人生号称是一场马拉松, 可是一旦你落后, 以后再怎么努力也追不回来. 就算你凿壁借光, 囊萤映雪, 你最多能超过那些中途休息的普通选手, 真正一流的选手以恒定的速率拉开跟你之间的差距. 四作Ion Stoica是大名鼎鼎的<a href="http://academic.research.microsoft.com/Publication/42079/chord-a-scalable-peer-to-peer-lookup-service-for-internet-applications">Chord: A scalable peer-to-peer lookup service for internet applications</a>的作者, 开始P2P时代的功臣之一. 2000年后的系统文章, 其引用数(5700+)位列第一.</p>
+
+<p>本文提供了一种去中心化的, 基于随机采样的scheduler, 比理论推测的最佳性能的调度器差12%的性能.</p>
+
+<p>历史上, scheduler曾经在60, 70年代是OS研究的热点, 但随着技术的发展, 在单机上这个领域已经消亡了. Linux kernel社区倒是在前几年整出一个CFS(Complete Fair Scheduler)的调度器出来. 我们组曾经有人想过做调度器, 但Frans跟我们交流的时候私下曾说过, 单机情况, 你随便整个调度器效果其实都差不多. Andrew教授也在&lt;现代操作系统>一书中说到, 这已经是一个研究驱动的领域了. 但分布式环境下, 由于运行的workload分成具有不同特点的阶段, 各个机器状况不同等, 这一领域又焕发了青春.</p>
+
+<blockquote><p>Timecard: Controlling User-Perceived Delays in Server-Based Mobile Applications</p>
+
+<p>Lenin Ravindranath (MIT), Jitendra Padhye, Ratul Mahajan (Microsoft Research), Hari Balakrishnan (MIT)</p></blockquote>
+
+<p>这是今年SOSP第一篇关注Mobile的文章, 好像是致力于减少从终端用户发出请求到服务器响应后返回终端用户之间的延迟. 但又好像只是对可能的延迟做出一个预期, 而不是让用户感到毫无响应, 对mobile领域完全没有了解, 无法提供建议.</p>
+
+<h3>Session 3: Seed Corn, Chair: Robert Morris</h3>
+
+<p>这个session就是蠕虫大哥当chair了. 这个session是OS领域相对传统的topic, 所以都是一些比较硬的技术. 二进制翻译, 虚拟化和形式化内核.</p>
+
+<blockquote><p>Fast Dynamic Binary Translation for the Kernel</p>
+
+<p>Piyus Kedia, Sorav Bansal (IIT Delhi)</p></blockquote>
+
+<p>Dynamic Binary Translation是一个非常强力的技术, 广泛应用在虚拟机中. 但本文是在OS中应用DBT技术, 我却不甚了解, 不知道为什么在纯粹的OS场景下需要使用DBT.作者开发了一个新的Linux上的Loadable Kernel Module, 使用Apache作测试, 结果显示有三倍的增速. 这里的三倍应该不是整体时间, 而只是跟DBT相关的部分.
+这是我在SOSP/OSDI级别会议上见到的第一篇纯粹的来自印度本土的文章.</p>
+
+<blockquote><p>VirtuOS: An Operating System with Kernel Virtualization</p>
+
+<p>Ruslan Nikolaev, Godmar Back (Virginia Polytechnic Institute)</p></blockquote>
+
+<p>使用虚拟化来隔离和保护内核的各个组成部分. 这个idea也历史悠久了, 他们的创新之处在于把OS的代码分成不同的service domain, 每个支持一部分kernel的功能. 没细看文章之前我对他们的效果持观望态度. 内核各个功能模块的解耦, 已经被前人反复探索过多次了, 比较著名的如<a href="http://www.cs.utah.edu/flux/oskit/">OSKit</a>, 都已经死去了很多年. 我个人觉得对OS kernel来说, 解耦和不是个好主意, 可靠性上的收益不足以抵消性能损失的代价.</p>
+
+<blockquote><p>From L3 to seL4: What Have We Learnt in 20 Years of L4 Microkernels?</p>
+
+<p>Kevin Elphinstone, Gernot Heiser (NICTA &amp; UNSW)</p></blockquote>
+
+<p>这就是大名鼎鼎的seL4了, 世界上首个完全形式化验证的OS kernel. 当然其规模很小, 大概只有7000行的C代码, 而且许多重要的内核功能都放在了用户态, 如内存分配. 两年前<a href="http://www.cse.unsw.edu.au/~gernot/">Gernot Heiser</a>来清华做讲座, 我去跟他搭讪, 他就问了我一句”How much do you know about operating system”, 我回了丫一句”less than you&hellip;”, 然后他一顿狂笑, 就没有下文了…他们这个系统是典型的三年不开张, 开张吃三年. 形式化的内核的门槛在于想想就让人不寒而栗的巨大工作量, 这哥们就是带着他们组不到十号人吭哧吭哧搞了几年(他们自己在paper中声称是21人/年的工作量), 最终整出了seL4. 然后拿这个去开公司(<a href="http://www.nicta.com.au/">NICTA</a>)了, 主要用做医疗设备上的嵌入式系统.</p>
+
+<h3>Session 4: Everything in its Place, Chair: James Mickens</h3>
+
+<blockquote><p>Replication, History, and Grafting in the Ori File System</p>
+
+<p>Ali Mashtizadeh, Andrea Bittau, Yifeng Frank Huang, David Mazières (Stanford University)</p></blockquote>
+
+<p>本文实现了一种新的支持在多个device间同步, 故障恢复, 历史版本查询及共享的文件系统, ori. 实验表明比传统的NFS和FUSE效果要好.</p>
+
+<p>存储领域是系统界最大的子方向, 拥有自己专门的会议FAST. 在以往的SOSP/OSDI发表文章所占比例也是最大. 但在今年的SOSP构成上看, 传统的存储被讨论的也不多了, 往往是把旧的技术放在新兴的应用场景下讨论, 如下面这一篇.</p>
+
+<blockquote><p>An Analysis of Facebook Photo Caching</p>
+
+<p>Qi Huang, Ken Birman, Robbert van Renesse (Cornell University), Wyatt Lloyd (Princeton University), Sanjeev Kumar, Harry C. Li (Facebook Inc.)</p></blockquote>
+
+<p>这篇文章是facebook发表在OSDI 2010年的文章<a href="http://www.stanford.edu/class/cs240/readings/haystack.pdf">Finding a needle in Haystack: facebook&rsquo;s photo storage</a>的后续. 10年那篇文章我细读过, 主要的想法就是通过修改元数据的格式, 把所有的元数据都放到内存中, 从而实现低延迟的访问. 本文通过插装facebook的photo caching software stack, 记录了对1, 000, 000张不同的照片上的77,000,000次访问. 总结了traffic pattern, cache access pattern, geolocation of clients and servers的规律, 并探索了照片内容和它被访问模式之间的关系.</p>
+
+<blockquote><p>IOFlow: A Software-Defined Storage Architecture</p>
+
+<p>Eno Thereska, Hitesh Ballani, Greg O&#8217;Shea, Thomas Karagiannis, Antony Rowstron (Microsoft Research), Tom Talpey (Microsoft), Richard Black (Microsoft Research), Timothy Zhu (Carnegie Mellon University)</p></blockquote>
+
+<p>本文面向的问题是, data center中的数据访问路径长而且复杂, 文中编写了一个原型系统, 能够控制OS中的storage driver和storage server. 这篇摘要我没看懂啥意思, 也没提其性能到底提升了多少, 不知道它到底想干啥……</p>
+
+<blockquote><p>From ARIES to MARS: Transaction Support for Next-Generation, Solid-State Drives</p>
+
+<p>Joel Coburn, Trevor Bunker, Meir Schwarz, Rajesh K. Gupta, Steven Swanson (University of California, San Diego)</p></blockquote>
+
+<p>面向磁盘硬件特性设计的存储算法, 并不适合新兴的存储材料, 如NVM的各种实现. 本文面向NVM的特性实现了一个新的支持Transaction的系统, 称为MARS, 相比于之前的系统ARIES, 能够提高到原先3.7倍的性能.</p>
+
+<h3>Session 5: Whoops, Chair: Robert van Renesse</h3>
+
+<p>这个session的名字越发文艺, whoops…</p>
+
+<blockquote><p>Asynchronous Intrusion Recovery for Interconnected Web Services</p>
+
+<p>Ramesh Chandra, Taesoo Kim, Nickolai Zeldovich (MIT CSAIL)</p></blockquote>
+
+<p>这位nickolai同学, 已经在前面介绍过了, 他的主要方向是安全, 这篇文章算是他的本职工作了. 本文提供了一种针对web service的入侵恢复工具, Aire. 实验表明Aire能够成功的从四个实际攻击中恢复过来, 包括近来facebook发生的利用OAuth漏洞的攻击. Aire会带来19% &ndash; 30%的性能损耗, 和每个request 6 – 9 KB的空间损耗.</p>
+
+<blockquote><p>Optimistic Crash Consistency</p>
+
+<p>Vijay Chidambaram, Thanumalayan Sankaranarayana Pillai, Andrea C. Arpaci-Dusseau, Remzi H. Arpaci-Dusseau (University of Wisconsin-Madison)</p></blockquote>
+
+<p>这篇文章来自Wisconsin大学著名的Arpaci夫妇(<a href="http://pages.cs.wisc.edu/~dusseau/">Andrea</a> &amp; <a href="http://pages.cs.wisc.edu/~remzi/">Remzi</a>). 夫妇两人均为UWM的教授, 研究方向也一样, 联袂行走存储界多年, 堪称神仙眷侣, 也是拿SOSP/OSDI当bbs灌的主.</p>
+
+<p>文章引入了一种新的针对日志文件系统的crash consistency, 称为 optimistic crash consistency. 以Linux的ext4文件系统为原型, 实现了一个变种, 称为OptFS. OptFS引入了两个新的文件系统原语, osync和dsync. 实验表明无论是鲁棒性还是性能, OptFS都有很大进步.</p>
+
+<blockquote><p>Do Not Blame Users for Misconfigurations</p>
+
+<p>Tianyin Xu, Jiaqi Zhang, Peng Huang, Jing Zheng, Tianwei Sheng (UC San Diego), Ding Yuan (University of Toronto), Yuanyuan Zhou (UC San Diego), Shankar Pasupathy (NetApp Inc)</p></blockquote>
+
+<p>这篇文章是来自我们系统界的摇滚巨星<a href="http://cseweb.ucsd.edu/~yyzhou/">yuanyuan zhou</a>教授的团队, 她们组的文章写得极具煽动性, story编的天衣无缝, 看完让你觉得, 我去这事儿太重要了, 要是不做计算机工业就停止进步了, 所以我当了两年他们组的脑残粉….. 去年yuanyuanzhou来清华讲座,我去跟她套磁, 上去就说大神我读着你的文章长大的, 然后通过email把我的一个idea跟她讲了, 希望跟她合作,但别人没看上我, 回复说我可以给你指导, 但你的文章请不要挂我的名字……</p>
+
+<p>他们组的研究特点非常鲜明, 纯data driven, 就是默默的去看bugzilla, patch list, <a href="http://cve.mitre.org/">CVE</a>, <a href="http://cwe.mitre.org/">CWE</a>, 以及开源项目的源代码. 从中找 insight, 找到insight后, 往往实现并不复杂. 去年做debug的时候曾经照猫画虎的想按相同的思路去做, 未果, 这个搞法更是需要整个实验室多年的积累才能成功. Yuanyuanzhou师承自华人计算机界著名教授<a href="www.cs.princeton.edu/~li/%E2%80%8E">Li Kai</a>, 而她本人现在也是桃李满天下. 今年FAST13的bestpaper, <a href="https://www.usenix.org/system/files/conference/fast13/fast13-final75_0.pdf">A study of Linux filesystem evolution</a>, 就来自yuanyuanzhou的得意门生<a href="http://pages.cs.wisc.edu/~shanlu/">Lu Shan</a>, 这篇文章一眼就能看出跟yuanyuanzou的研究风格一脉相承. 他们组跟王小云一样也是偏爱女生, 研究团队基本是娘子军. 不知道yuanyuaznhou的这种鲜明的研究风格, 是否来自于女性特有的耐心和直觉.</p>
+
+<p>她在清华讲座的时候提到, 2004年的时候她就觉得configuration是个非常重要的方向. 但当时因为没有合适的人手, 也没有公司合作, 一直拖了4-5年, 直到2011年才做出了<a href="http://opera.ucsd.edu/paper/sosp11-yin.pdf">第一篇configuration相关的文章</a>, 尚未召开的2014年的ASPLOS上她们中了<a href="http://opera.ucsd.edu/pub_chronological.htm">另一篇configuration的文章</a>. 一流的老牌研究组都是这个特点, 一个idea反复的搞, 在各个场景下, 从各个方向搞. 她们组做的文章的topic有非常强的”时空局部性”, 一般就是一个哥们博士五年都做一个topic, 连续做2-3篇, 形成一个系列, 并最终作为自己的博士论文. 比较出名的是她的log系列文章, 做的非常成功. 先是在yuanyuanzhou自己的公司里产品化了, 随后被<a href="http://www.vmware.com/products/vcenter-log-insight/">VMWare全线购买</a>.</p>
+
+<p>本文实现了一个可以从源代码自动推断configuration要求的工具, SPEX. 进而使用这个工具寻找现有configuration设计中容易被用户误读的配置项, 或是自身就存在矛盾和重复的配置项. 文章在一个商业软件及6个开源软件上进行了测试, 找到了743个容易被用户误读, 以及112个不一致的配置项. 其中364个误读和80个不一致配置项已经被开发者接受并改正. 而且这篇文章的结果促使Squid的开发者重新设计了他们的配置项解析库, 变得更加user-friendly.</p>
+
+<blockquote><p>Towards Optimization-Safe Systems: Analyzing the Impact of Undefined Behavior</p>
+
+<p>Xi Wang, Nickolai Zeldovich, M. Frans Kaashoek, Armando Solar-Lezama (MIT CSAIL)</p></blockquote>
+
+<p>这又是一篇来自MIT PDOS组的文章, 一作本科是清华的大概比我高一届. 这篇文章也是他发表在OSDI12的文章<a href="https://www.usenix.org/system/files/conference/osdi12/osdi12-final-88.pdf">KINT</a>的后续. 上周我们组的学术讨论会上我的一个师弟刚刚报告了这篇文章, 主要是在linux kernel和PostgreSQL中查找由于编译器优化导致的程序行为未定义而引发的bug. 实现了一个静态代码检测工具, STACK, 共检测出了160个新的bug, 绝大多数都被developer 接受了.</p>
+
+<p>这篇文章是debug界的另一种典型思路, 用人工特征的方法找出一类特殊的bug, 然后再编写自动化工具, 去检查大量的源代码, 看能从中找到多少这一类的bug. 前面提到的文章KINT, 就是专门在内核中查找与整数溢出相关的bug.</p>
+
+<h3>Session 6: Data, Data, Everywhere, Chair: John Ousterhout</h3>
+
+<blockquote><p>Transaction Chains: Achieving Serializability with Low Latency in Geo-Distributed Storage Systems</p>
+
+<p>Yang Zhang, Russell Power, Siyuan Zhou, Yair Sovran (NYU), Marcos K. Aguilera (Microsoft Research), Jinyang Li (NYU)</p></blockquote>
+
+<p>这篇文章来自NYU的Jinyang Li教授, 也是Frans的得意门生, 她主要的研究方向就是分布式系统. 这篇文章的摘要没太看懂, 她们设计了一个分布式存储系统Lynx, 即提供了serializable transactions, 又保持了low latency. 她们自己实现了三个应用, auction service, twitter like blogging and a social network site. 这些应用使用Lynx获得了高throughput和低latency.</p>
+
+<blockquote><p>SPANStore: Cost-Effective Geo-Replicated Storage Spanning Multiple Cloud Services</p>
+
+<p>Zhe Wu, Michael Butkiewicz, Dorian Perkins (UC Riverside), Ethan Katz-Bassett (USC), Harsha V. Madhyastha (UC Riverside)</p></blockquote>
+
+<p>为了让身处不同地理位置的用户都能够快捷的存取数据, 应用往往在各个数据中心存储一份自己数据的copy, 这些存储是费钱的. 本文做了一个原型SPANStore, 帮助应用提供商减少这方面的cost, 实验显示, 用了他们的SPANStore, 在一些场景下能省10倍的钱, 同时延迟又在可忍受的范围内.</p>
+
+<blockquote><p>Consistency-Based Service Level Agreements for Cloud Storage</p>
+
+<p>Douglas B. Terry, Vijayan Prabhakaran, Ramakrishna Kotla, Mahesh Balakrishnan, Marcos K. Aguilera (Microsoft Research), Hussam Abu-Libdeh (Cornell University)</p></blockquote>
+
+<p>本文实现了一个key-value存储系统, Pileus, 支持应用在consistency和latency之间通过一个称为consistency-based service level agreements做tradeoff.</p>
+
+<h3>Session 7: Right Makes Might, Chair: YY Zhou</h3>
+
+<p>这个session就是yuanyuanzhou大神做chair了.</p>
+
+<blockquote><p>Tango: Distributed Data Structures over a Shared Log</p>
+
+<p>Mahesh Balakrishnan, Dahlia Malkhi, Ted Wobber, Ming Wu, Vijayan Prabhakaran (Microsoft Research), Michael Wei (UCSD), John D. Davis (Microsoft Research), Sriram Rao (Microsoft), Tao Zou (Cornell University), Aviad Zuck (Tel-Aviv University)</p></blockquote>
+
+<p>这篇文章的作者比较奇葩, 来自六个不同的研究机构, 天南海北的, 不知道怎么勾搭到一起的. 文章把元数据给用他们称为shared log的技术给组织起来, 从而能够支持不同数据间的transaction</p>
+
+<blockquote><p>Verifying Computations with State</p>
+
+<p>Benjamin Braun (UT Austin), Ariel J. Feldman (University of Pennsylvania), Zuocheng Ren, Srinath Setty, Andrew J. Blumberg, Michael Walfish (UT Austin)</p></blockquote>
+
+<p>如何检测外包给第三方的计算(如托管在云上), 其结果是否与我们的要求相符, 而无需在本地重新计算? 文章开发了一个称为Pantry的工具, 能够检测MapReduce Job, simple database queries, 以及interaction with private state的计算, 验证其计算结果.</p>
+
+<blockquote><p>There Is More Consensus In Egalitarian Parliaments</p>
+
+<p>Iulian Moraru, David G. Andersen (Carnegie Mellon University), Michael Kaminsky (Intel Labs)</p></blockquote>
+
+<p>本文描述了一种新的Paxos算法, Egalitarian Paxos. 有三个优点: 低延迟, 负载均衡以及性能变化平缓. 作者在理论上证明的EPaxos的特性, 并在EC2上进行实验.</p>
+
+<h3>Session 8: N&#8217; Sync, Chair: Michael Walfish</h3>
+
+<blockquote><p>ROOT: Replaying Multithreaded Traces with Resource-Oriented Ordering</p>
+
+<p>Zev Weiss, Tyler Harter, Andrea C. Arpaci-Dusseau, Remzi H. Arpaci-Dusseau (University of Wisconsin-Madison)</p></blockquote>
+
+<p>这又是一篇来自Arpaci夫妇的文章, 系统界真正一流的研究组, 双手双脚全用上, 估计就能数完了.</p>
+
+<p>这篇文章是关于Replay技术的, 由于IO和多线程的原因, deterministic replay一直没有被解决. 这是因为想要复现一个计算过程, 需要复现此计算过程中各个线程的执行顺序(这对于debug是非常重要的), 且要记录此计算过程开始时所依赖的外部输入. 而外部输入是随计算一直被更改的, 直接记录会带来时间和空间上的开销. 我的上一篇文章, 就是通过hack linux页表来做记录, 然后做replay, 实在没啥新的insight.</p>
+
+<p>本文提出了一种记录IO operation的方法, ROOT, 实现了一个原型系统ARTC, 并在apple desktop上搞了一个benchmark suit, Magritte, 用来测试他们的这个IO trace工具.文章核心的insight在于, 关注IO操作的顺序, 而不是IO操作的内容, 通过这些操作的顺序, 推断应用内部的数据依赖关系, 然后以此为基础进行replay. 因为要把所有IO数据都给记录下来, 这个代价是不可承受的, 所以他们做了这个tradeoff. 他们的实验效果我没看明白, 不过应该是好的吧…..</p>
+
+<blockquote><p>PARROT: A Practical Runtime for Deterministic, Stable, and Reliable Threads</p>
+
+<p>Heming Cui (Columbia University), Jiri Simsa (Carnegie Mellon University), Yi-Hong Lin, Hao Li (Columbia University), Ben Blum (Carnegie Mellon University), Xinan Xu, Junfeng Yang (Columbia University), Garth A. Gibson, Randal E. Bryant (Carnegie Mellon University)</p></blockquote>
+
+<p>这篇文章来自Columbia 的Junfeng Yang的研究组, <a href="http://www.cs.columbia.edu/~junfeng/">junfengyang</a>组跟我们组是战略合作伙伴关系. Junfeng yang是清华本科, 据说当年申请出国的时候, 在我大老板实验室呆过一段时间求推荐信. 去年他跟我们交流后一起吃饭, 饭桌上跟我大老板一幅相敬如宾的样子. 现在我室友在他组里做交换, 对他们组的学术水平学术风气都大加赞赏, 相比之下我们组&hellip; Junfengyang曾经拿过OSDI 2004, 2008的best paper, 也是写的一手好文章, 我室友说他组里所有的文章, 都是学生出idea出工, 但写作都是由junfeng亲自操刀. 顺便提一句, 这篇文章的最后一个作者<a href="http://www.cs.cmu.edu/~bryant/">Randal E. Bryant</a>, 就是 <a href="http://www.amazon.cn/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%9B%E4%B9%A6-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F-%E5%B8%83%E8%8E%B1%E6%81%A9%E7%89%B9/dp/B004BJ18KM/ref=sr_1_1?ie=UTF8&amp;qid=1383804993&amp;sr=8-1&amp;keywords=%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F">Computer Systems: A Programmer&rsquo;s Perspective</a>的作者.</p>
+
+<p>本文认为, 并行编程之所以容易出错, 是因为runtime有太多种调度可能性. 在系统设计中优雅简单的方案通常伴随着低下的性能, 本文就是做了个tradeoff, 默认情况下用round robin在线程间进行确定性的调度, 如果用户不满rr的性能, 就在自己的code中插入一些hint来切换或增加新的调度策略. 文章还把他们这套架构, PARROT, 跟一个自己实现的model checker, DBUG结合起来, 两者都获得了更好的效果. 他们组在model checking上有很深的造诣, 惯于把model checking的技术应用在各种特殊场景下, junfengyang OSDI 2004的<a href="https://www.usenix.org/legacy/events/osdi04/tech/yang.html">best paper</a>就是利用model checking检测文件系统的错误. 半年前model checking技术的发明者<a href="http://www.cs.cmu.edu/~emc/">Edmund M. Clarke</a>(07 年图灵奖得主)来清华讲座, 我问他觉得model checking是否能用来check software, 他表示近期之内估计很悬, 主要是由于software 里复杂的data structure会导致严重的组合爆炸问题. 所以现在在软件检测中应用model checking都是走junfengyang这种路线, 挑个特殊场景, 上一堆约束, 然后出一些结果.</p>
+
+<p>在108个程序上的实验表明, 大概比之前这种确定性调度的runtime library要快10倍. 然后巴拉巴拉一堆好处, 实验效果么, 你们懂得.</p>
+
+<blockquote><p>RaceMob: Crowdsourced Data Race Detection</p>
+
+<p>Baris Kasikci, Cristian Zamfir, George Candea (EPFL)</p></blockquote>
+
+<p>这个组跟我是仇人相见分外眼红, 来自EPFL的<a href="http://dslab.epfl.ch/">Dependable System Lab</a>. 去年我想了个通过合并程序控制流, 以减轻组合爆炸问题的idea, 结果跟他们组发表在<a href="http://pure.rhul.ac.uk/portal/files/17557737/stateMerging_pldi12.pdf">PLDI 12的文章</a>撞了个满怀. 我的审稿人给我的review意见中, 直接就让我去看他们的文章. 但我俩都是独立做出来的, 互相不知道对方的存在, 我投稿之后两个月他的文章publish了, 然后发现撞了, 然后我就跪了……所以我现在看见微博上说用symbolic execution做检测云云, 就觉得”往事不要再提, 博士几多风雨”, 因为symbolic execution同样面临非常严重的组合爆炸问题, 现在离实用还远. 那些成功的范例, 都是辛苦tuning的结果.</p>
+
+<p>本文提出了一个data race 检测器, RaceMob, 相较于之前的众多检测器, 提升了精确度降低了overhead. RaceMob走的是动静结合的方式, 先用static analysis工具扫描代码, 找出可能产生race的部分, 然后当代码运行时, 再动态的检测这些潜在的race是否真的会产生race. 他们在数十个系统上做了测试, 包括Apache, SQLite and Memcached, 说自己效果巨好, 远超start-of-the-art云云. 但我深表怀疑, 因为摘要中他们没说他们到底找到多少个data race, 有多少个被开发者确认了, 而只说RaceMob的dynamic部分overhead是多么多么低.</p>
+
+<p>顺便提一句, 据我室友讲, junfeng yang的研究组比较鄙视这个组, 说他们的研究都是纸上谈兵. 不过不知道有多少同行相轻的成分在里面.</p>
+
+<h3>Session 9: Data into Information, Chair: George Candea</h3>
+
+<p>这一章就是我的宿敌George Candea当chair了(当然, 这是单方面的宿敌, 他也不知道他的那篇文章沉重的打击了欧亚大陆另一端一名博士的人生), 两篇讨论流处理, 两篇讨论图处理.</p>
+
+<blockquote><p>Discretized Streams: Fault-Tolerant Streaming Computation at Scale</p>
+
+<p>Matei Zaharia, Tathagata Das, Haoyuan Li, Timothy Hunter, Scott Shenker, Ion Stoica (UC Berkeley)</p></blockquote>
+
+<p>老熟人, 我就不介绍了.</p>
+
+<blockquote><p>Naiad: A Timely Dataflow System</p>
+
+<p>Derek G. Murray, Frank McSherry, Rebecca Isaacs, Michael Isard, Paul Barham, Martin Abadi (Microsoft Research)</p></blockquote>
+
+<p>本文实现了一个新的流处理系统, Naiad, 能够提供高带宽, 低延迟, 同时还支持迭代和增量计算. 不过就我个人印象, 微软在系统届的文章, 总得打点折扣.</p>
+
+<p>提出了一个新的计算模型, timely dataflow, 通过给数据打时间戳, 支持了轻量级的coordination mechanism. 文章声称许多高阶编程模型都可以建立在Naiad提供的原语上, 支持流处理, 迭代的机器学习算法, 迭代的图挖掘等等.</p>
+
+<blockquote><p>A Lightweight Infrastructure for Graph Analytics</p>
+
+<p>Donald Nguyen, Andrew Lenharth, Keshav Pingali (University of Texas at Austin)</p></blockquote>
+
+<p>文章实现了一个称为Galois的系统, 我浏览了下正文, 应该以GraphLab为主要竞争对手, 中间处处与GraphLab做对比.</p>
+
+<p>Galois的三个主要特点是:</p>
+
+<ol>
+<li><p>支持先前框架上无法表达的复杂算法, 在幂律图上性能有量级的提升</p></li>
+<li><p>由于他们复杂的调度算法, 即使是能在之前框架上表达的算法, 也会在他们的框架上运行的更好.</p></li>
+<li><p>他们在Galois基础上包装出了三个之前框架的API. 实验结果表明, 原先在其他框架上运行的程序, 使用这套包装的API在Galois上运行, 性能也更好.</p></li>
+</ol>
+
+
+<blockquote><p>X-Stream: Edge-Centric Graph Processing using Streaming Partitions</p>
+
+<p>Amitabha Roy, Ivo Mihailovic, Willy Zwaenepoel (EPFL)</p></blockquote>
+
+<p>X-stream是新的面向单机, 基于scatter-gather模式的图处理系统. 与之前系统相比, 有两个创新点</p>
+
+<ol>
+<li><p>其计算模型是edge centric, 而非vertex-centric的.</p></li>
+<li><p>顺序的访问图中的边, 相比于之前随机访问的方式. 顺序存取能大大提升访存性能.</p></li>
+</ol>
+
+
+<p>大量的图算法都可以在XStream上表达, 而且扩展性良好. Edge-centric带来的另一个好处是X-stream无需对edge-list排序, 而其他的系统通常是需要在预处理中对边排序.</p>
+
+<p>写完这个长长的总结, 才意识到自己博士读到第五年, 基本把所有来过清华的系统届人士都搭讪了一遍. Ph.D其修远兮, 吾将上下而搭讪. 没办法, 身在(此处省略吐槽贵组和贵系30字, publish出来的东西总得顾忌影响).</p>
+
+<p>Futher Reading</p>
+
+<ol>
+<li><p>陈海波大神2013.10的新作 &ndash; <a href="http://www.vision-computing.org/userfiles/file/2013-10/201310271317133818.pdf">计算机系统会议论文是如何评审的</a></p></li>
+<li><p>应该是贵系的一位兄弟写的, 可惜没找到原始出处 &ndash; <a href="http://blog.sina.com.cn/s/blog_556a37e10100mdnf.html">计算机系统领域顶级会议&mdash;OSDI，SOSP</a></p></li>
+<li><p>唐杰老师旗下网站所做的一个有趣的对比 &ndash; <a href="http://arnetminer.org/conferencebestpapers%3Bjsessionid=E0A30E1D0F6EBD1F713AB5C29B79D8F7.tt#anchor_ICML">Best Papers vs. Top Cited Papers in Computer Science</a></p></li>
+</ol>
+
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
     <a href="/blog/archives">Blog Archives</a>
@@ -77,6 +406,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/09/sosp-2013-analysis/">SOSP 2013 Analysis</a>
+      </li>
     
   </ul>
 </section>
@@ -91,7 +424,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Your Name -
+  Copyright &copy; 2013 - sproblvem -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
