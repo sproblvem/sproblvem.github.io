@@ -4,7 +4,7 @@
   <title><![CDATA[理性动态链接库]]></title>
   <link href="http://sproblvem.github.io/atom.xml" rel="self"/>
   <link href="http://sproblvem.github.io/"/>
-  <updated>2013-11-10T11:10:34+08:00</updated>
+  <updated>2013-11-10T11:42:08+08:00</updated>
   <id>http://sproblvem.github.io/</id>
   <author>
     <name><![CDATA[sproblvem]]></name>
@@ -40,7 +40,7 @@
 
 <p><a href="pdos.csail.mit.edu/~kaashoek">Frans Kasshoek</a>教授是在SOSP/OSDI上发表论文最多的作者, 曾担任了三年清华的客座教授, 可能后来嫌我们学校烂泥扶不上墙就没再来了……Frans教授师承自系统届祖师爷级别的人物Andrew S. Tanenbaum, 如今在系统届活跃的研究人员向上追溯师承关系有几乎一小半都可以追到Andrew身上. 我曾听过两次Frans的讲座, 给我印象最深刻的是, 有次我坐在第二排, 正在嘉宾席后面. 他讲完自己的topic之后, 坐在嘉宾席上等待他手下的一个faculty讲另一个topic. 竟然分分钟掏出个Thinkpad打开VIM界面就开始编程了. 当时Frans已经是美国工程院院士了, 年龄也超过了50岁, 竟然还抓紧这种零散时间写程序. 这是我个人见到的最高龄的, 也很可能是最高水平的程序员现场编程.</p>
 
-<p><a href="http://people.csail.mit.edu/nickolai/">Nickolai Zeldovich</a>曾经在去年跟我合作过一篇文章, 也是他们到清华讲座. 我发现这哥们懂symbolic execution, 当时我正好有一个idea, 就上去跟他套磁. 他表示pretty cool, 最后就做了篇文章出来, 但不幸跟EPFL的发表在PLDI 12上的一篇文章撞车了, 于是这篇文章只能躺在我的硬盘深处, 没机会再去推动人类进步. 当时跟这哥们的合作主要是通过email, 我把文章发给他, 他给我提建议应当如何继续试验, 如何分析结果, 包括文章内容的取舍, 短短几封信就受益匪浅. 毫不夸张的说, 超过我这些年从导师和实验室获得指导的总和(因为总共也没多少……). 顺便一提, 这哥们是stanford的博士, 期间主要是搞信息流的, 写了第一个支持信息流的操作系统原型<a href="http://www.scs.stanford.edu/histar/">HiStar</a>. 学术界一直企图用信息流去在理论上优美的解决信息的控制, 审计等问题, 但据我所知好像一直没在工业界得到大规模的应用.</p>
+<p><a href="http://people.csail.mit.edu/nickolai/">Nickolai Zeldovich</a>曾经在去年跟我合作过一篇文章, 也是他们到清华讲座. 我发现这哥们懂symbolic execution, 当时我正好有一个idea, 就上去跟他套磁. 他表示pretty cool, 最后就做了篇文章出来, 但不幸跟EPFL的发表在PLDI 12上的一篇文章撞车了, 于是这篇文章只能躺在我的硬盘深处, 没机会再去推动人类进步. 当时跟这哥们的合作主要是通过email, 我把文章发给他, 他给我提建议应当如何继续试验, 如何分析结果, 包括文章内容的取舍, 短短几封信就受益匪浅. 顺便一提, 这哥们是stanford的博士, 期间主要是搞信息流的, 写了第一个支持信息流的操作系统原型<a href="http://www.scs.stanford.edu/histar/">HiStar</a>. 学术界一直企图用信息流去在理论上优美的解决信息的控制, 审计等问题, 但据我所知好像一直没在工业界得到大规模的应用.</p>
 
 <p><a href="http://pdos.csail.mit.edu/rtm/">Robert Morris</a>, 单看这个名字大家可能看着有点眼熟. 没错, 就是他, 1988年在Cornell读研究生的时候发布了世界上第一个蠕虫. 他爹也是个大名鼎鼎的Morris, 曾任美国国家计算机安全中心(隶属于美国国家安全局NSA)首席科学家. 称得上是老子搞安全, 儿子来捣蛋. 以前我第一次读到这哥们的论文的时候, 去他们实验室主页瞎晃, 发现MIT开了一门计算机安全的课程. 课程的introduction就把这位开启蠕虫时代的活化石拉到eager young man们面前, 讲述自己的心路历程…</p>
 
@@ -307,7 +307,8 @@
 <p>Futher Reading</p>
 
 <ol>
-<li><p>陈海波大神2013.10的新作 &ndash; <a href="http://www.vision-computing.org/userfiles/file/2013-10/201310271317133818.pdf">计算机系统会议论文是如何评审的</a></p></li>
+<li>陈海波大神2013.10的新作 &ndash; [计算机系统会议论文是如何评审的](<a href="http://www.vision-computing.org/us">http://www.vision-computing.org/us</a></li>
+<li><p>erfiles/file/2013-10/201310271317133818.pdf)</p></li>
 <li><p>应该是贵系的一位兄弟写的, 可惜没找到原始出处 &ndash; <a href="http://blog.sina.com.cn/s/blog_556a37e10100mdnf.html">计算机系统领域顶级会议&mdash;OSDI，SOSP</a></p></li>
 <li><p>唐杰老师旗下网站所做的一个有趣的对比 &ndash; <a href="http://arnetminer.org/conferencebestpapers%3Bjsessionid=E0A30E1D0F6EBD1F713AB5C29B79D8F7.tt#anchor_ICML">Best Papers vs. Top Cited Papers in Computer Science</a></p></li>
 </ol>
