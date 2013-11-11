@@ -117,7 +117,7 @@
 
 <p><a href="http://pdos.csail.mit.edu/rtm/">Robert Morris</a>, 单看这个名字大家可能看着有点眼熟. 没错, 就是他, 1988年在Cornell读研究生的时候发布了世界上第一个蠕虫. 他爹也是个大名鼎鼎的Morris, 曾任美国国家计算机安全中心(隶属于美国国家安全局NSA)首席科学家. 称得上是老子搞安全, 儿子来捣蛋. 以前我第一次读到这哥们的论文的时候, 去他们实验室主页瞎晃, 发现MIT开了一门计算机安全的课程. 课程的introduction就把这位开启蠕虫时代的活化石拉到eager young man们面前, 讲述自己的心路历程…</p>
 
-<p>多核上的扩展性是PDOS小组的传统方向, 从Frans教授算起已经折腾了20多年, 这也是为什么Frans教授是二作, 而Niciolai是三作, 因为Nickolai的主研方向是信息流, 而这样超一流实验室发表的文章的作者顺序, 真的是按贡献大小排序的. 两年前我还在折腾Linux Kernel的时候, 正碰上他们组发表了一篇修改Linux内核的锁实现, 以在众核(单机超过32核)情况下提升应用性能的文章. 文章效果非常好, 使用的几个workload都达到了近乎线性的加速比. 我在学术讨论会上报告这篇文章的时候, 大老板听闻这篇文章只不过编写了1600+行代码, 大手一挥让我们大干快上, 也搞个类似的出来. 可是改内核这种事情, 别说修改1600行, 就是改一行代码, 想要知道在哪里修改能够取得预期的效果, 对普通的博士生来说其背后的工作量都是难以估算的. 不知道他们的技术如今是否被并入了linux kernel distribution的 mainline. 他们组的研究方向相对传统, 很少去赶时髦. 往往是去深入考察一些大家都习以为常的系统的设计和实现, 从中发现改进的机会, 工作都特别的硬. 这个组曾经是我的dream team, 因此对他们的情况比较了解, 在这里介绍的比较多.</p>
+<p>多核上的扩展性是PDOS小组的传统方向, 从Frans教授算起已经折腾了20多年, 这也是为什么Frans教授是二作, 而Nickolai是三作, 因为Nickolai的主研方向是信息流, 而这样超一流实验室发表的文章的作者顺序, 真的是按贡献大小排序的. 两年前我还在折腾Linux Kernel的时候, 正碰上他们组发表了一篇修改Linux内核的锁实现, 以在众核(单机超过32核)情况下提升应用性能的文章. 文章效果非常好, 使用的几个workload都达到了近乎线性的加速比. 我在学术讨论会上报告这篇文章的时候, 大老板听闻这篇文章只不过编写了1600+行代码, 大手一挥让我们大干快上, 也搞个类似的出来. 可是改内核这种事情, 别说修改1600行, 就是改一行代码, 想要知道在哪里修改能够取得预期的效果, 对普通的博士生来说其背后的工作量都是难以估算的. 不知道他们的技术如今是否被并入了linux kernel distribution的 mainline. 他们组的研究方向相对传统, 很少去赶时髦. 往往是去深入考察一些大家都习以为常的系统的设计和实现, 从中发现改进的机会, 工作都特别的硬. 这个组曾经是我的dream team, 因此对他们的情况比较了解, 在这里介绍的比较多.</p>
 
 <blockquote><p>Speedy Transactions in Multicore In-Memory Databases</p>
 
@@ -240,9 +240,9 @@
 
 <p>这篇文章是来自我们系统界的摇滚巨星<a href="http://cseweb.ucsd.edu/~yyzhou/">yuanyuan zhou</a>教授的团队, 她们组的文章写得极具煽动性, story编的天衣无缝, 看完让你觉得, 我去这事儿太重要了, 要是不做计算机工业就停止进步了, 所以我当了两年他们组的脑残粉….. 去年yuanyuanzhou来清华讲座,我去跟她套磁, 上去就说大神我读着你的文章长大的, 然后通过email把我的一个idea跟她讲了, 希望跟她合作,但别人没看上我, 回复说我可以给你指导, 但你的文章请不要挂我的名字……</p>
 
-<p>他们组的研究特点非常鲜明, 纯data driven, 就是默默的去看bugzilla, patch list, <a href="http://cve.mitre.org/">CVE</a>, <a href="http://cwe.mitre.org/">CWE</a>, 以及开源项目的源代码. 从中找 insight, 找到insight后, 往往实现并不复杂. 去年做debug的时候曾经照猫画虎的想按相同的思路去做, 未果, 这个搞法更是需要整个实验室多年的积累才能成功. Yuanyuanzhou师承自华人计算机界著名教授<a href="www.cs.princeton.edu/~li/%E2%80%8E">Li Kai</a>, 而她本人现在也是桃李满天下. 今年FAST13的bestpaper, <a href="https://www.usenix.org/system/files/conference/fast13/fast13-final75_0.pdf">A study of Linux filesystem evolution</a>, 就来自yuanyuanzhou的得意门生<a href="http://pages.cs.wisc.edu/~shanlu/">Lu Shan</a>, 这篇文章一眼就能看出跟yuanyuanzou的研究风格一脉相承. 他们组跟王小云一样也是偏爱女生, 研究团队基本是娘子军. 不知道yuanyuaznhou的这种鲜明的研究风格, 是否来自于女性特有的耐心和直觉.</p>
+<p>他们组的研究特点非常鲜明, 纯data driven, 就是默默的去看bugzilla, patch list, <a href="http://cve.mitre.org/">CVE</a>, <a href="http://cwe.mitre.org/">CWE</a>, 以及开源项目的源代码. 从中找 insight, 找到insight后, 往往实现并不复杂. 去年做debug的时候曾经照猫画虎的想按相同的思路去做, 未果, 这个搞法更是需要整个实验室多年的积累才能成功. yuanyuan zhou师承自华人计算机界著名教授<a href="www.cs.princeton.edu/~li/%E2%80%8E">Li Kai</a>, 而她本人现在也是桃李满天下. 今年FAST13的bestpaper, <a href="https://www.usenix.org/system/files/conference/fast13/fast13-final75_0.pdf">A study of Linux filesystem evolution</a>, 就来自yuanyuan zhou的得意门生<a href="http://pages.cs.wisc.edu/~shanlu/">Lu Shan</a>, 这篇文章一眼就能看出跟yuanyuanzou的研究风格一脉相承. 他们组跟王小云一样也是偏爱女生, 研究团队基本是娘子军. 不知道yuanyua zhou的这种鲜明的研究风格, 是否来自于女性特有的耐心和直觉.</p>
 
-<p>她在清华讲座的时候提到, 2004年的时候她就觉得configuration是个非常重要的方向. 但当时因为没有合适的人手, 也没有公司合作, 一直拖了4-5年, 直到2011年才做出了<a href="http://opera.ucsd.edu/paper/sosp11-yin.pdf">第一篇configuration相关的文章</a>, 尚未召开的2014年的ASPLOS上她们中了<a href="http://opera.ucsd.edu/pub_chronological.htm">另一篇configuration的文章</a>. 一流的老牌研究组都是这个特点, 一个idea反复的搞, 在各个场景下, 从各个方向搞. 她们组做的文章的topic有非常强的”时空局部性”, 一般就是一个哥们博士五年都做一个topic, 连续做2-3篇, 形成一个系列, 并最终作为自己的博士论文. 比较出名的是她的log系列文章, 做的非常成功. 先是在yuanyuanzhou自己的公司里产品化了, 随后被<a href="http://www.vmware.com/products/vcenter-log-insight/">VMWare全线购买</a>.</p>
+<p>她在清华讲座的时候提到, 2004年的时候她就觉得configuration是个非常重要的方向. 但当时因为没有合适的人手, 也没有公司合作, 一直拖了4-5年, 直到2011年才做出了<a href="http://opera.ucsd.edu/paper/sosp11-yin.pdf">第一篇configuration相关的文章</a>, 尚未召开的2014年的ASPLOS上她们中了<a href="http://opera.ucsd.edu/pub_chronological.htm">另一篇configuration的文章</a>. 一流的老牌研究组都是这个特点, 一个idea反复的搞, 在各个场景下, 从各个方向搞. 她们组做的文章的topic有非常强的&#8221;时空局部性&#8221;, 一般就是一个哥们博士五年都做一个topic, 连续做2-3篇, 形成一个系列, 并最终作为自己的博士论文. 比较出名的是她的log系列文章, 做的非常成功. 先是在yuanyuan zhou自己的公司里产品化了, 随后被<a href="http://www.vmware.com/products/vcenter-log-insight/">VMWare全线购买</a>.</p>
 
 <p>本文实现了一个可以从源代码自动推断configuration要求的工具, SPEX. 进而使用这个工具寻找现有configuration设计中容易被用户误读的配置项, 或是自身就存在矛盾和重复的配置项. 文章在一个商业软件及6个开源软件上进行了测试, 找到了743个容易被用户误读, 以及112个不一致的配置项. 其中364个误读和80个不一致配置项已经被开发者接受并改正. 而且这篇文章的结果促使Squid的开发者重新设计了他们的配置项解析库, 变得更加user-friendly.</p>
 
@@ -380,8 +380,7 @@
 <p>Futher Reading</p>
 
 <ol>
-<li>陈海波大神2013.10的新作 &ndash; [计算机系统会议论文是如何评审的](<a href="http://www.vision-computing.org/us">http://www.vision-computing.org/us</a></li>
-<li><p>erfiles/file/2013-10/201310271317133818.pdf)</p></li>
+<li><p>陈海波大神2013.10的新作 &ndash; <a href="http://www.liwenhaosuper.com/blog/wp-content/uploads/2013/10/paper%E8%AF%84%E5%AE%A1.pdf">计算机系统会议论文是如何评审的</a></p></li>
 <li><p>应该是贵系的一位兄弟写的, 可惜没找到原始出处 &ndash; <a href="http://blog.sina.com.cn/s/blog_556a37e10100mdnf.html">计算机系统领域顶级会议&mdash;OSDI，SOSP</a></p></li>
 <li><p>唐杰老师旗下网站所做的一个有趣的对比 &ndash; <a href="http://arnetminer.org/conferencebestpapers%3Bjsessionid=E0A30E1D0F6EBD1F713AB5C29B79D8F7.tt#anchor_ICML">Best Papers vs. Top Cited Papers in Computer Science</a></p></li>
 </ol>
