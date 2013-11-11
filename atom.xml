@@ -4,7 +4,7 @@
   <title><![CDATA[理性动态链接库]]></title>
   <link href="http://sproblvem.github.io/atom.xml" rel="self"/>
   <link href="http://sproblvem.github.io/"/>
-  <updated>2013-11-11T11:07:02+08:00</updated>
+  <updated>2013-11-12T00:26:48+08:00</updated>
   <id>http://sproblvem.github.io/</id>
   <author>
     <name><![CDATA[sproblvem]]></name>
@@ -310,6 +310,7 @@
 <li><p>陈海波大神2013.10的新作 &ndash; <a href="http://www.liwenhaosuper.com/blog/wp-content/uploads/2013/10/paper%E8%AF%84%E5%AE%A1.pdf">计算机系统会议论文是如何评审的</a></p></li>
 <li><p>应该是贵系的一位兄弟写的, 可惜没找到原始出处 &ndash; <a href="http://blog.sina.com.cn/s/blog_556a37e10100mdnf.html">计算机系统领域顶级会议&mdash;OSDI，SOSP</a></p></li>
 <li><p>唐杰老师旗下网站所做的一个有趣的对比 &ndash; <a href="http://arnetminer.org/conferencebestpapers%3Bjsessionid=E0A30E1D0F6EBD1F713AB5C29B79D8F7.tt#anchor_ICML">Best Papers vs. Top Cited Papers in Computer Science</a></p></li>
+<li><p>Cambridge的一个sysblog上关于SOSP 2013的现场转播, <a href="http://www.syslog.cl.cam.ac.uk/2013/11/04/live-blog-from-sosp-2013/">DAY1</a>, <a href="http://www.syslog.cl.cam.ac.uk/2013/11/05/live-blog-from-sosp-2013-day-2/">DAY2</a></p></li>
 </ol>
 
 ]]></content>
